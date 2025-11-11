@@ -127,8 +127,8 @@ public class HydrationCalculator {
 
         public ThirdWindow () {
 
-            measureUnit.setSelectedIndex(-1);
-            measureUnit.setEditable(true);
+            measureUnit.setSelectedIndex(0);
+            measureUnit.setEditable(false);
             northPanel.add(mU);
             northPanel.add(measureUnit);
             measureUnit.addActionListener(this);
