@@ -129,7 +129,6 @@ public class HydrationCalculator {
 
             measureUnit.setSelectedIndex(-1);
             measureUnit.setEditable(true);
-            measureUnit.addActionListener(this);
             northPanel.add(mU);
             northPanel.add(measureUnit);
             measureUnit.addActionListener(this);
@@ -207,58 +206,65 @@ public class HydrationCalculator {
                 new FirstWindow();
             }
             if (e.getSource() == calculateButton) {
+                try {
+                    if (toggler == 0) {  //normal bread
+                        if (secondToggler == 1) {  //calculate flour
+                            double waterAmount = Double.parseDouble(tfWater.getText());
+                            double hydrationLevel = Double.parseDouble(tfHydration.getText());
+                            double flourAmount = ((waterAmount * 100) / hydrationLevel);
+                            resLabel.setText(String.format("The needed flour amount is %.2f " + measureUnit.getSelectedItem(), flourAmount));
 
-                if (toggler == 0) {  //normal bread
-                    if (secondToggler == 1) {  //calculate flour
-                        double waterAmount = Double.parseDouble(tfWater.getText());
-                        double hydrationLevel = Double.parseDouble(tfHydration.getText());
-                        double flourAmount = ((waterAmount * 100) / hydrationLevel);
-                        resLabel.setText(String.format("The needed flour amount is %.2f " + measureUnit.getSelectedItem(), flourAmount));
+                        } else if (secondToggler == 2) {  //calculate water
+                            double flourAmount = Double.parseDouble(tfFlour.getText());
+                            double hydrationLevel = Double.parseDouble(tfHydration.getText());
+                            double waterAmount = ((hydrationLevel * flourAmount) / 100);
+                            resLabel.setText(String.format("The needed water amount is %.2f " + measureUnit.getSelectedItem(), waterAmount));
 
-                    } else if (secondToggler == 2) {  //calculate water
-                        double flourAmount = Double.parseDouble(tfFlour.getText());
-                        double hydrationLevel = Double.parseDouble(tfHydration.getText());
-                        double waterAmount = ((hydrationLevel * flourAmount) / 100);
-                        resLabel.setText(String.format("The needed water amount is %.2f " + measureUnit.getSelectedItem(), waterAmount));
+                        } else if (secondToggler == 3) {  //calculate hydration
+                            double flourAmount = Double.parseDouble(tfFlour.getText());
+                            double waterAmount = Double.parseDouble(tfWater.getText());
+                            double hydrationLevel = (waterAmount / flourAmount) * 100;
+                            resLabel.setText(String.format("The hydration level is %.2f%%", hydrationLevel));
 
-                    } else if (secondToggler == 3) {  //calculate hydration
-                        double flourAmount = Double.parseDouble(tfFlour.getText());
-                        double waterAmount = Double.parseDouble(tfWater.getText());
-                        double hydrationLevel = (waterAmount / flourAmount) * 100;
-                        resLabel.setText(String.format("The hydration level is %.2f%%", hydrationLevel));
-
+                        }
                     }
-                }
-                else if (toggler == 1) {  //sourdough bread
-                    if (secondToggler == 1) {  //calculate flour
-                        double waterAmount = Double.parseDouble(tfWater.getText());
-                        double hydrationLevel = Double.parseDouble(tfHydration.getText());
-                        double starterAmount = Double.parseDouble(tfStarter.getText());
-                        double flourAmount = (((waterAmount + starterAmount / 2) * 100) / hydrationLevel) - (starterAmount / 2);
-                        resLabel.setText(String.format("The needed flour amount is %.2f " + measureUnit.getSelectedItem(), flourAmount));
+                    else if (toggler == 1) {  //sourdough bread
+                        if (secondToggler == 1) {  //calculate flour
+                            double waterAmount = Double.parseDouble(tfWater.getText());
+                            double hydrationLevel = Double.parseDouble(tfHydration.getText());
+                            double starterAmount = Double.parseDouble(tfStarter.getText());
+                            double flourAmount = (((waterAmount + starterAmount / 2) * 100) / hydrationLevel) - (starterAmount / 2);
+                            resLabel.setText(String.format("The needed flour amount is %.2f " + measureUnit.getSelectedItem(), flourAmount));
 
-                    } else if (secondToggler == 2) {  //calculate water
-                        double flourAmount = Double.parseDouble(tfFlour.getText());
-                        double hydrationLevel = Double.parseDouble(tfHydration.getText());
-                        double starterAmount = Double.parseDouble(tfStarter.getText());
-                        double waterAmount = ((hydrationLevel * (flourAmount + starterAmount /2)) / 100) - (starterAmount / 2);
-                        resLabel.setText(String.format("The needed water amount is %.2f " + measureUnit.getSelectedItem(), waterAmount));
+                        } else if (secondToggler == 2) {  //calculate water
+                            double flourAmount = Double.parseDouble(tfFlour.getText());
+                            double hydrationLevel = Double.parseDouble(tfHydration.getText());
+                            double starterAmount = Double.parseDouble(tfStarter.getText());
+                            double waterAmount = ((hydrationLevel * (flourAmount + starterAmount /2)) / 100) - (starterAmount / 2);
+                            resLabel.setText(String.format("The needed water amount is %.2f " + measureUnit.getSelectedItem(), waterAmount));
 
-                    } else if (secondToggler == 3) {  //calculate hydration
-                        double flourAmount = Double.parseDouble(tfFlour.getText());
-                        double waterAmount = Double.parseDouble(tfWater.getText());
-                        double starterAmount = Double.parseDouble(tfStarter.getText());
-                        double hydrationLevel = ((waterAmount + starterAmount / 2) / (flourAmount + starterAmount / 2)) * 100;
-                        resLabel.setText(String.format("The hydration level is %.2f%%", hydrationLevel));
+                        } else if (secondToggler == 3) {  //calculate hydration
+                            double flourAmount = Double.parseDouble(tfFlour.getText());
+                            double waterAmount = Double.parseDouble(tfWater.getText());
+                            double starterAmount = Double.parseDouble(tfStarter.getText());
+                            double hydrationLevel = ((waterAmount + starterAmount / 2) / (flourAmount + starterAmount / 2)) * 100;
+                            resLabel.setText(String.format("The hydration level is %.2f%%", hydrationLevel));
 
-                    } else if (secondToggler == 4) {  //calculate starter
-                        double flourAmount = Double.parseDouble(tfFlour.getText());
-                        double waterAmount = Double.parseDouble(tfWater.getText());
-                        double hydrationLevel = Double.parseDouble(tfHydration.getText());
-                        double starterAmount = ((200 * waterAmount - hydrationLevel * 2 * flourAmount) / (hydrationLevel - 100));
-                        resLabel.setText(String.format("The needed starter amount is %.2f " + measureUnit.getSelectedItem(), starterAmount));
+                        } else if (secondToggler == 4) {  //calculate starter
+                            double flourAmount = Double.parseDouble(tfFlour.getText());
+                            double waterAmount = Double.parseDouble(tfWater.getText());
+                            double hydrationLevel = Double.parseDouble(tfHydration.getText());
+                            double starterAmount = ((200 * waterAmount - hydrationLevel * 2 * flourAmount) / (hydrationLevel - 100));
+                            resLabel.setText(String.format("The needed starter amount is %.2f " + measureUnit.getSelectedItem(), starterAmount));
+                        }
                     }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this,
+                            "Please enter valid numeric values!",
+                            "Input Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
+
             }
         }
     }
