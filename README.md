@@ -7,39 +7,27 @@ The calculator guides users through a series of windows to choose what type of b
 
 ## Features & Usage
 
-✔️ Choose Bread Type (First window):
+### Choose Bread Type (First window):
 Normal yeast bread or Sourdough bread
 
 ![](https://github.com/ngocmai-do/Bread-Hydration-Calculator/blob/master/documentation/main-window.png?raw=true)
 
 
-✔️ Choose Calculate Option (Second window):
-Depending on the bread type, users can calculate:
-
-Flour amount
-
-Water amount
-
-Hydration level
-
-Starter amount (sourdough only)
-
-“Go Back” navigation between windows
+### Choose Calculate Option (Second window):
+Depending on the bread type, users can calculate: flour amount, water amount, hydration level, starter amount (sourdough only), "Go Back" to go back to the first window
 
 ![](https://github.com/ngocmai-do/Bread-Hydration-Calculator/blob/master/documentation/option-menu1.png?raw=true)
 
 
-✔️ Input of Data & Return of Result (Third window):
+### Input of Data & Return of Result (Third window):
 
 Dropdown for measurement unit (grams or deciliters)
 
 Enter the required numeric values
 
-Error handling for invalid numeric input
-
 Click Calculate to display the result
 
-“Go Back” navigation between windows (go back to the first window)
+“Go Back” to go back to the first window
 
 ![](https://github.com/ngocmai-do/Bread-Hydration-Calculator/blob/master/documentation/hydration-calculation-flour.png?raw=true)
 
