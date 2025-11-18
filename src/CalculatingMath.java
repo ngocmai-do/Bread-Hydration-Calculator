@@ -1,4 +1,4 @@
-public class CaculatingMath {
+public class CalculatingMath {
 
     public static String flourCalNorm (double waterAmount, double hydrationLevel) {
         double flourAmount = ((waterAmount * 100) / hydrationLevel);
